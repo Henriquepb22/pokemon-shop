@@ -3,7 +3,7 @@ import styled, { css } from 'styled-components'
 export const Wrapper = styled.div`
     display: flex;
     flex-direction: column;
-    max-width: 20rem;
+    width: 20rem;
 `
 
 export const ProductWrapper = styled.div`
@@ -28,6 +28,7 @@ export const ProductName = styled.h2`
     ${({ theme }) => css`
         font-size: ${theme.fonts.sizes.medium};
         font-weight: ${theme.fonts.normal};
+        text-transform: capitalize;
     `}
 `
 

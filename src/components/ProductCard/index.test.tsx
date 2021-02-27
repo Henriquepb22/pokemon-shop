@@ -5,9 +5,10 @@ import ProductCard from '.'
 
 const props = {
     id: 4,
-    name: 'Charmander',
+    name: 'charmander',
     price: 25.5,
-    img: 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/004.png',
+    img:
+        'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/4.png',
 }
 
 describe('<ProductCard />', () => {
