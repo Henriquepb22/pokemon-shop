@@ -19,13 +19,13 @@
         "test": "react-scripts test --watchAll=false",
         "test:watch": "yarn test --watch --coverage",
         "eject": "react-scripts eject",
-        "lint": "eslint src",
+        "lint": "eslint src --max-warnings=0",
         "generate": "yarn plop --plopfile generators/plopfile.js",
         "typecheck": "tsc --project tsconfig.json --noEmit",
         "postinstall": "npx husky install"
     },
     "lint-staged": {
-        "src/**/*": [
+        "src/**/*.ts(x)": [
             "yarn lint --fix",
             "yarn test --findRelatedTests --bail"
         ]

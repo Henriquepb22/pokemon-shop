@@ -15,6 +15,9 @@ export default {
             xlarge: '2.0rem',
             xxlarge: '2.8rem',
         },
+        light: 300,
+        normal: 400,
+        bold: 700,
     },
     spacings: {
         xsmall: '0.4rem',

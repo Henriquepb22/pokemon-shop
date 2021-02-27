@@ -4,6 +4,8 @@ import { GlobalStyles } from 'styles/global'
 import Routes from 'components/Routes'
 import theme from 'styles/theme'
 
+import './styles.css'
+
 function App() {
     return (
         <ThemeProvider theme={theme}>
