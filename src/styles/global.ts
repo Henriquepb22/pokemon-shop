@@ -19,8 +19,8 @@ export const GlobalStyles = createGlobalStyle`
         }
 
         body {
-            font-size: ${theme.fonts.sizes.medium};
             font-family: 'Open Sans', sans-serif;
+            font-size: ${theme.fonts.sizes.medium};
         }
     `}
 `

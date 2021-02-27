@@ -34,6 +34,6 @@ export default {
         medium: '0.8rem',
     },
     transition: {
-        fast: '0.3s ease-in',
+        fast: '0.4s ease-in',
     },
 }

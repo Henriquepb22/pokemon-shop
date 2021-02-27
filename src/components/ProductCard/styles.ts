@@ -5,9 +5,8 @@ export const Wrapper = styled.div`
         display: flex;
         flex-direction: column;
         width: 20rem;
-        border: 2px solid ${theme.colors.grey};
-        border-radius: ${theme.radius.small};
         transition: box-shadow ${theme.transition.fast};
+        border-radius: ${theme.radius.medium};
 
         &:hover {
             box-shadow: 4px 4px 0.4rem ${theme.colors.secondary};
@@ -20,6 +19,11 @@ export const ProductWrapper = styled.div`
         display: flex;
         flex-direction: column;
         padding: ${theme.spacings.large};
+        border: 2px solid ${theme.colors.grey};
+        border-radius: ${theme.radius.small};
+        border-bottom: 0;
+        border-bottom-left-radius: 0;
+        border-bottom-right-radius: 0;
     `}
 `
 

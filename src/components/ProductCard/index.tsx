@@ -1,4 +1,6 @@
+import { CartPlus } from '@styled-icons/fa-solid/CartPlus'
 import { formatToCurrency } from 'utils/logic/helpers'
+import Button from 'components/Button'
 
 import * as S from './styles'
 
@@ -18,6 +20,7 @@ const ProductCard = ({ name, price, img }: ProductCardProps) => (
                 <S.ProductPrice>{formatToCurrency(price)}</S.ProductPrice>
             </S.ProductInfo>
         </S.ProductWrapper>
+        <Button icon={<CartPlus />}>Adicionar</Button>
     </S.Wrapper>
 )
 
