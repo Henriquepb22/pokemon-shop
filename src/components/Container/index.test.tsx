@@ -11,20 +11,5 @@ describe('<Container />', () => {
         )
 
         expect(container.firstChild).toHaveStyleRule('max-width', '130rem')
-        expect(container.firstChild).toMatchInlineSnapshot(`
-            .c0 {
-              max-width: 130rem;
-              margin-left: 0;
-              margin-right: 0;
-            }
-
-            <div
-              class="c0"
-            >
-              <span>
-                Pokémon SHOP
-              </span>
-            </div>
-        `)
     })
 })

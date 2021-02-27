@@ -1,9 +1,18 @@
 import styled, { css } from 'styled-components'
 
 export const Wrapper = styled.div`
-    display: flex;
-    flex-direction: column;
-    width: 20rem;
+    ${({ theme }) => css`
+        display: flex;
+        flex-direction: column;
+        width: 20rem;
+        border: 2px solid ${theme.colors.grey};
+        border-radius: ${theme.radius.small};
+        transition: box-shadow ${theme.transition.fast};
+
+        &:hover {
+            box-shadow: 4px 4px 0.4rem ${theme.colors.secondary};
+        }
+    `}
 `
 
 export const ProductWrapper = styled.div`
@@ -39,5 +48,3 @@ export const ProductPrice = styled.span`
         font-weight: ${theme.fonts.bold};
     `}
 `
-
-export const AddToCard = styled.button``

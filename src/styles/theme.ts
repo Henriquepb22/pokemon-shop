@@ -5,6 +5,9 @@ export default {
     colors: {
         white: '#FAFAFA',
         black: '#030517',
+        grey: '#BDC3C7',
+        primary: '',
+        secondary: '',
     },
     fonts: {
         sizes: {
@@ -30,4 +33,7 @@ export default {
         small: '0.4rem',
         medium: '0.8rem',
     },
-} as const
+    transition: {
+        fast: '0.3s ease-in',
+    },
+}

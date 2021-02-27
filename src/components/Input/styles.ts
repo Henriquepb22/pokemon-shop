@@ -9,7 +9,7 @@ export const Wrapper = styled.div`
         border-radius: ${theme.radius.medium};
 
         & > svg {
-            color: ${theme.colors.black};
+            color: ${theme.colors.secondary};
             width: 2rem;
             margin-right: ${theme.spacings.medium};
         }
