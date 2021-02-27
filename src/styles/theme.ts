@@ -23,4 +23,8 @@ export default {
         large: '1.6rem',
         xlarge: '2.0rem',
     },
+    radius: {
+        small: '0.4rem',
+        medium: '0.8rem',
+    },
 } as const
