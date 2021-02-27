@@ -16,16 +16,18 @@
     "scripts": {
         "start": "react-scripts start",
         "build": "react-scripts build",
-        "test": "react-scripts test",
+        "test": "react-scripts test --watchAll=false",
+        "test:watch": "yarn test --watch --coverage",
         "eject": "react-scripts eject",
         "lint": "eslint src",
+        "generate": "yarn plop --plopfile generators/plopfile.js",
         "typecheck": "tsc --project tsconfig.json --noEmit",
         "postinstall": "npx husky install"
     },
     "lint-staged": {
         "src/**/*": [
             "yarn lint --fix",
-            "yarn test --findRelatedTests --bail --passWithNoTests"
+            "yarn test --findRelatedTests --bail"
         ]
     },
     "eslintConfig": {

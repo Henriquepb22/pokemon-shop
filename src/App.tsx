@@ -1,10 +1,17 @@
+import { BrowserRouter as Router } from 'react-router-dom'
+import { ThemeProvider } from 'styled-components'
+import { GlobalStyles } from 'styles/global'
+import Routes from 'components/Routes'
+import theme from 'styles/theme'
+
 function App() {
     return (
-        <div>
-            <header>
-                <a href="/">B2W - Pókemon Shop</a>
-            </header>
-        </div>
+        <ThemeProvider theme={theme}>
+            <GlobalStyles />
+            <Router>
+                <Routes />
+            </Router>
+        </ThemeProvider>
     )
 }
 
