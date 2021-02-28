@@ -1,5 +1,5 @@
 export default {
-    type: 'fire',
+    type: 'water',
     colors: {
         primary: '#08517A',
         secondary: '#0A79BE',

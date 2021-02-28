@@ -1,6 +1,6 @@
 import { useContext } from 'react'
+import ShopProvider, { ShopContext } from 'contexts/ShopContext'
 import { BrowserRouter as Router } from 'react-router-dom'
-import { ThemeContext } from 'contexts/ThemeContext'
 import { ThemeProvider } from 'styled-components'
 import { GlobalStyles } from 'styles/global'
 import Routes from 'components/Routes'
@@ -8,15 +8,17 @@ import Routes from 'components/Routes'
 import './styles.css'
 
 function App() {
-    const { theme } = useContext(ThemeContext)
+    const { shopTheme } = useContext(ShopContext)
 
     return (
-        <ThemeProvider theme={theme}>
-            <GlobalStyles />
-            <Router>
-                <Routes />
-            </Router>
-        </ThemeProvider>
+        <ShopProvider>
+            <ThemeProvider theme={shopTheme}>
+                <GlobalStyles />
+                <Router>
+                    <Routes />
+                </Router>
+            </ThemeProvider>
+        </ShopProvider>
     )
 }
 

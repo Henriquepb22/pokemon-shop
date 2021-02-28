@@ -1,19 +1,19 @@
 import { useContext } from 'react'
 import { ShoppingCart } from '@styled-icons/fa-solid/ShoppingCart'
 import { Search } from '@styled-icons/fa-solid/Search'
-import { ThemeContext } from 'contexts/ThemeContext'
+import { ShopContext } from 'contexts/ShopContext'
 import Button from 'components/Button'
 import Input from 'components/Input'
 
 import * as S from './styles'
 
 const Header = () => {
-    const { selectedTheme } = useContext(ThemeContext)
+    const { selectedShop } = useContext(ShopContext)
 
     return (
         <S.Wrapper>
             <S.Container>
-                <S.Title>{selectedTheme} Pokémon Shop</S.Title>
+                <S.Title>{selectedShop} Pokémon Shop</S.Title>
                 <Input
                     placeholder="Pesquisar..."
                     id="search"
