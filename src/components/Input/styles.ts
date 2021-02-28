@@ -4,7 +4,8 @@ import media from 'styled-media-query'
 export const Wrapper = styled.div`
     ${({ theme }) => css`
         display: flex;
-        padding: ${theme.spacings.medium};
+        width: 100%;
+        padding: 0 ${theme.spacings.medium};
         background-color: ${theme.colors.white};
         border-radius: ${theme.radius.medium};
 
@@ -17,10 +18,6 @@ export const Wrapper = styled.div`
         &:focus-within {
             box-shadow: 0 0 0.8rem ${theme.colors.white};
         }
-
-        ${media.lessThan('medium')`
-            width: 100%;
-        `}
     `}
 `
 
@@ -35,7 +32,9 @@ export const Input = styled.input`
         background-color: transparent;
         border: 0;
         font-size: ${theme.fonts.sizes.large};
-        width: 50rem;
+        padding: ${theme.spacings.medium} 0;
+        height: 100%;
+        width: 100%;
 
         &:focus {
             outline: 0;

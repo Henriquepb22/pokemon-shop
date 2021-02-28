@@ -1,7 +1,8 @@
 import styled, { css } from 'styled-components'
+import { ButtonProps } from '.'
 
-export const Wrapper = styled.button`
-    ${({ theme }) => css`
+export const Wrapper = styled.button<Pick<ButtonProps, 'onlyIcon'>>`
+    ${({ theme, onlyIcon }) => css`
         width: 100%;
         display: flex;
         align-items: center;
@@ -16,6 +17,7 @@ export const Wrapper = styled.button`
         color: ${theme.colors.white};
         border-bottom-left-radius: ${theme.radius.small};
         border-bottom-right-radius: ${theme.radius.small};
+        position: relative;
 
         & > svg {
             width: 2rem;
@@ -28,5 +30,37 @@ export const Wrapper = styled.button`
             cursor: pointer;
             box-shadow: 0 0 0.8rem ${theme.colors.secondary};
         }
+
+        ${!!onlyIcon &&
+        css`
+            background-color: transparent;
+            border: 0;
+            width: 6rem;
+
+            &:hover,
+            &:focus {
+                box-shadow: none;
+            }
+
+            & > svg {
+                width: 3rem;
+                margin-right: 0;
+            }
+        `}
+    `}
+`
+
+export const Badge = styled.span`
+    ${({ theme }) => css`
+        position: absolute;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 2rem;
+        height: 2rem;
+        border-radius: 50%;
+        right: 0;
+        bottom: 0;
+        background-color: ${theme.colors.secondary};
     `}
 `

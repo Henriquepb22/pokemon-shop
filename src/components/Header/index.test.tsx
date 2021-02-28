@@ -10,5 +10,9 @@ describe('<Header />', () => {
         expect(
             screen.getByRole('heading', { name: /pokémon shop/i })
         ).toBeInTheDocument()
+        expect(screen.getByPlaceholderText(/pesquisar/i)).toBeInTheDocument()
+        expect(
+            screen.getByLabelText(/carrinho de compras/i)
+        ).toBeInTheDocument()
     })
 })

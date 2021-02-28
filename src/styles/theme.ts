@@ -1,6 +1,7 @@
 export default {
     grid: {
         container: '130rem',
+        gutter: '3.2rem',
     },
     colors: {
         white: '#FAFAFA',

@@ -36,4 +36,10 @@ describe('<Button />', () => {
 
         expect(onClick).toHaveBeenCalled()
     })
+
+    it('should render an button with badge', () => {
+        renderWithTheme(<Button badge="2">Add to cart</Button>)
+
+        expect(screen.getByText(/2/i)).toBeInTheDocument()
+    })
 })

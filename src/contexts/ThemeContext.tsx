@@ -17,12 +17,12 @@ const getTheme = (name: Themes) => {
 }
 
 const initialValue: ContextType = {
-    selectedTheme: localStorage.getItem('theme') || 'fire',
+    selectedTheme: 'dragon',
     theme: {
         ...theme,
         colors: {
             ...theme.colors,
-            ...getTheme((localStorage.getItem('theme') as Themes) || 'fire'),
+            ...getTheme('dragon'),
         },
     },
 }
