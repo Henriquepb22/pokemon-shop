@@ -4,7 +4,7 @@ import Button from 'components/Button'
 
 import * as S from './styles'
 
-type ProductCardProps = {
+export type ProductCardProps = {
     id: number
     name: string
     price: number
