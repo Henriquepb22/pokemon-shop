@@ -1,27 +1,17 @@
-import ProductCard from 'components/ProductCard'
+import productsMock from 'components/ProductCard/mock'
+import ShoppingCart from 'components/ShoppingCart'
+import { Container } from 'components/Container'
+import ProductList from 'components/ProductList'
 import Header from 'components/Header'
-
-const props = {
-    id: 4,
-    name: 'charmander',
-    price: 25.5,
-    img:
-        'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/4.png',
-}
 
 const Home = () => {
     return (
-        <section>
+        <section style={{ position: 'relative' }}>
             <Header />
-            <div
-                style={{
-                    display: 'flex',
-                    justifyContent: 'center',
-                    marginTop: '10rem',
-                }}
-            >
-                <ProductCard {...props} />
-            </div>
+            <Container>
+                <ProductList products={productsMock} />
+            </Container>
+            <ShoppingCart />
         </section>
     )
 }

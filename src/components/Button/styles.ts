@@ -18,6 +18,7 @@ export const Wrapper = styled.button<Pick<ButtonProps, 'onlyIcon'>>`
         border-bottom-left-radius: ${theme.radius.small};
         border-bottom-right-radius: ${theme.radius.small};
         position: relative;
+        z-index: ${theme.layers.base};
 
         & > svg {
             width: 2rem;
@@ -29,6 +30,11 @@ export const Wrapper = styled.button<Pick<ButtonProps, 'onlyIcon'>>`
         &:focus {
             cursor: pointer;
             box-shadow: 0 0 0.8rem ${theme.colors.secondary};
+        }
+
+        &:disabled {
+            opacity: 0.7;
+            pointer-events: none;
         }
 
         ${!!onlyIcon &&

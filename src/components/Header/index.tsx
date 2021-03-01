@@ -1,5 +1,6 @@
 import { useContext } from 'react'
 import { ShoppingCart } from '@styled-icons/fa-solid/ShoppingCart'
+import { ShoppingCartContext } from 'contexts/ShoppingCartContext'
 import { Search } from '@styled-icons/fa-solid/Search'
 import { ShopContext } from 'contexts/ShopContext'
 import Button from 'components/Button'
@@ -9,6 +10,7 @@ import * as S from './styles'
 
 const Header = () => {
     const { selectedShop } = useContext(ShopContext)
+    const { products, openCart } = useContext(ShoppingCartContext)
 
     return (
         <S.Wrapper>
@@ -22,6 +24,8 @@ const Header = () => {
                 <Button
                     icon={<ShoppingCart aria-label="Carrinho de compras" />}
                     onlyIcon
+                    badge={products.length ? `${products.length}` : ''}
+                    onClick={() => openCart()}
                 />
             </S.Container>
         </S.Wrapper>

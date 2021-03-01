@@ -9,9 +9,10 @@ export type ProductCardProps = {
     name: string
     price: number
     img: string
+    onClick?: () => void
 }
 
-const ProductCard = ({ name, price, img }: ProductCardProps) => (
+const ProductCard = ({ name, price, img, onClick }: ProductCardProps) => (
     <S.Wrapper>
         <S.ProductWrapper>
             <S.Image src={img} aria-label={name} />
@@ -20,7 +21,9 @@ const ProductCard = ({ name, price, img }: ProductCardProps) => (
                 <S.ProductPrice>{formatToCurrency(price)}</S.ProductPrice>
             </S.ProductInfo>
         </S.ProductWrapper>
-        <Button icon={<CartPlus />}>Adicionar</Button>
+        <Button icon={<CartPlus />} onClick={onClick}>
+            Adicionar
+        </Button>
     </S.Wrapper>
 )
 

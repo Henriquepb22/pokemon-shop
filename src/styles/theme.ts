@@ -3,10 +3,17 @@ export default {
         container: '130rem',
         gutter: '3.2rem',
     },
+    layers: {
+        base: 10,
+        header: 20,
+        overlay: 30,
+        modal: 40,
+    },
     colors: {
         white: '#FAFAFA',
         black: '#030517',
         grey: '#BDC3C7',
+        lightGrey: '#F8F8F7',
         primary: '',
         secondary: '',
     },

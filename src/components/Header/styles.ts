@@ -7,10 +7,17 @@ export const Wrapper = styled.header`
     ${({ theme }) => css`
         display: flex;
         align-items: center;
+        position: fixed;
+        left: 0;
+        right: 0;
+        top: 0;
         height: 7rem;
+        width: 100%;
         background-color: ${theme.colors.primary};
+        z-index: ${theme.layers.header};
 
         ${media.lessThan('medium')`
+            position: static;
             height: 14rem;
             padding: 0 ${theme.spacings.large};
         `}

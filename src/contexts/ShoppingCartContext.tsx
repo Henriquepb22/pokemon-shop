@@ -1,19 +1,28 @@
+/* eslint-disable @typescript-eslint/no-empty-function */
 import { createContext, useMemo, useState } from 'react'
 import { ProductCardProps } from 'components/ProductCard'
 
 type ProductsProps = (ProductCardProps & {
     quantity: number
 })[]
-type ShoppingCartProps = {
+export type ShoppingCartProps = {
     products: ProductsProps
     totalValue: number
-    addProduct?: (product: ProductCardProps) => void
-    removeProduct?: (product: ProductCardProps) => void
+    addProduct: (product: ProductCardProps) => void
+    removeProduct: (product: ProductCardProps) => void
+    openCart: () => void
+    closeCart: () => void
+    isOpen: boolean
 }
 
 const initialValue: ShoppingCartProps = {
     products: [],
     totalValue: 0,
+    addProduct: () => {},
+    removeProduct: () => {},
+    openCart: () => {},
+    closeCart: () => {},
+    isOpen: false,
 }
 
 export const ShoppingCartContext = createContext(initialValue)
@@ -24,6 +33,7 @@ type ShoppingCartProviderProps = {
 
 const ShoppingCartProvider = ({ children }: ShoppingCartProviderProps) => {
     const [products, setProducts] = useState<ProductsProps>([])
+    const [isOpen, setIsOpen] = useState(false)
 
     const addProduct = (product: ProductCardProps) => {
         if (products.find(({ id }) => id === product.id)) {
@@ -53,17 +63,20 @@ const ShoppingCartProvider = ({ children }: ShoppingCartProviderProps) => {
         })
 
     const totalValue = useMemo(() => {
-        return products.reduce(
-            (acc, obj) => obj.quantity * obj.quantity + acc,
-            0
-        )
+        return products.reduce((acc, obj) => obj.quantity * obj.price + acc, 0)
     }, [products])
+
+    const openCart = () => setIsOpen(true)
+    const closeCart = () => setIsOpen(false)
 
     const value: ShoppingCartProps = {
         products,
         totalValue,
         addProduct,
         removeProduct,
+        openCart,
+        closeCart,
+        isOpen,
     }
 
     return (
