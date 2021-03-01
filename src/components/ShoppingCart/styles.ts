@@ -1,11 +1,16 @@
 import styled, { css } from 'styled-components'
+import media from 'styled-media-query'
+
+import * as Button from 'components/Button/styles'
 
 type WrapperProps = {
     isOpen: boolean
+    animationFinished: boolean
 }
 
 export const Wrapper = styled.div<WrapperProps>`
-    ${({ theme, isOpen }) => css`
+    ${({ theme, isOpen, animationFinished }) => css`
+        display: flex;
         flex-direction: column;
         padding: ${theme.spacings.large};
         background-color: ${theme.colors.lightGrey};
@@ -16,14 +21,77 @@ export const Wrapper = styled.div<WrapperProps>`
         overflow-y: auto;
         z-index: ${theme.layers.overlay};
 
+        ${Button.Wrapper} {
+            &:first-child {
+                padding: 0;
+                width: 2.8rem;
+                > svg {
+                    width: 2.8rem;
+                    color: ${theme.colors.black};
+                }
+            }
+        }
+
+        ${animationFinished &&
+        css`
+            display: none;
+            visibility: hidden;
+        `}
+
         ${isOpen
             ? css`
-                  display: flex;
-                  right: 0;
+                  animation: slideIn 0.4s ease-in forwards;
+                  @keyframes slideIn {
+                      0% {
+                          right: -40rem;
+                      }
+                      100% {
+                          right: 0rem;
+                      }
+                  }
               `
             : css`
-                  display: none;
-                  right: -40rem;
+                  animation: slideOut 0.4s ease-in forwards;
+                  @keyframes slideOut {
+                      0% {
+                          right: 0rem;
+                      }
+                      100% {
+                          right: -40rem;
+                      }
+                  }
+              `}
+
+              ${media.lessThan('medium')`
+                    top: 0;
+                    width: 100vw;
+                    height: 100vh;
+
+                    ${
+                        isOpen
+                            ? css`
+                                  animation: slideIn 0.4s ease-in forwards;
+                                  @keyframes slideIn {
+                                      0% {
+                                          right: -100vw;
+                                      }
+                                      100% {
+                                          right: 0rem;
+                                      }
+                                  }
+                              `
+                            : css`
+                                  animation: slideOut 0.4s ease-in forwards;
+                                  @keyframes slideOut {
+                                      0% {
+                                          right: 0rem;
+                                      }
+                                      100% {
+                                          right: -100vw;
+                                      }
+                                  }
+                              `
+                    }
               `}
     `}
 `
@@ -57,48 +125,6 @@ export const CartProducts = styled.div`
         display: flex;
         flex-direction: column;
         padding-bottom: ${theme.spacings.medium};
-    `}
-`
-
-export const CartProduct = styled.div`
-    ${({ theme }) => css`
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-
-        &:not(:first-child) {
-            border-top: 1px solid ${theme.colors.secondary};
-        }
-    `}
-`
-
-export const CartProductImage = styled.img`
-    display: inline-block;
-    height: 10rem;
-    width: 10rem;
-`
-
-export const CartProductInfo = styled.div`
-    display: flex;
-    align-items: center;
-`
-
-export const CartProductName = styled.p`
-    ${({ theme }) => css`
-        font-size: ${theme.fonts.sizes.medium};
-        font-weight: ${theme.fonts.normal};
-        text-transform: capitalize;
-
-        > span {
-            text-transform: none;
-        }
-    `}
-`
-
-export const CartProductPrice = styled.p`
-    ${({ theme }) => css`
-        font-size: ${theme.fonts.sizes.large};
-        font-weight: ${theme.fonts.bold};
     `}
 `
 

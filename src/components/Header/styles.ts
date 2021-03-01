@@ -53,6 +53,7 @@ export const Title = styled.h1`
         ${media.lessThan('medium')`
             font-size: ${theme.fonts.sizes.xlarge};
             margin-bottom: ${theme.spacings.xsmall};
+            margin-right: 0;
         `}
     `}
 `

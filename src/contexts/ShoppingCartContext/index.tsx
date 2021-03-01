@@ -1,5 +1,6 @@
 /* eslint-disable @typescript-eslint/no-empty-function */
 import { createContext, useMemo, useState } from 'react'
+import { ShoppingCartTheme } from 'styles/themes/shoppingCart'
 import { ProductCardProps } from 'components/ProductCard'
 
 type ProductsProps = (ProductCardProps & {
@@ -9,7 +10,7 @@ export type ShoppingCartProps = {
     products: ProductsProps
     totalValue: number
     addProduct: (product: ProductCardProps) => void
-    removeProduct: (product: ProductCardProps) => void
+    removeProduct: (productId: number) => void
     openCart: () => void
     closeCart: () => void
     isOpen: boolean
@@ -57,9 +58,9 @@ const ShoppingCartProvider = ({ children }: ShoppingCartProviderProps) => {
         }
     }
 
-    const removeProduct = (product: ProductCardProps) =>
+    const removeProduct = (productId: number) =>
         setProducts((oldProducts) => {
-            return oldProducts.filter(({ id }) => id !== product.id)
+            return oldProducts.filter(({ id }) => id !== productId)
         })
 
     const totalValue = useMemo(() => {
@@ -81,6 +82,7 @@ const ShoppingCartProvider = ({ children }: ShoppingCartProviderProps) => {
 
     return (
         <ShoppingCartContext.Provider value={value}>
+            <ShoppingCartTheme isOpen={isOpen} />
             {children}
         </ShoppingCartContext.Provider>
     )

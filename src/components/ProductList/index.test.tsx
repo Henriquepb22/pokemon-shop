@@ -21,6 +21,7 @@ describe('<ProductList />', () => {
     })
 
     it('should add an product to the cart', () => {
+        const addProduct = jest.fn()
         const value: ShoppingCartProps = {
             totalValue: 250,
             isOpen: true,
@@ -30,7 +31,7 @@ describe('<ProductList />', () => {
                     quantity: 1,
                 }
             }),
-            addProduct: jest.fn(),
+            addProduct,
             removeProduct: jest.fn(),
             closeCart: jest.fn(),
             openCart: jest.fn(),
@@ -46,7 +47,7 @@ describe('<ProductList />', () => {
         expect(button).toBeInTheDocument()
         userEvent.click(button)
 
-        expect(value.addProduct).toHaveBeenCalledTimes(1)
-        expect(value.addProduct).toHaveBeenCalledWith(productsMock[0])
+        expect(addProduct).toHaveBeenCalledTimes(1)
+        expect(addProduct).toHaveBeenCalledWith(productsMock[0])
     })
 })

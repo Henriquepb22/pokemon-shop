@@ -35,7 +35,7 @@ describe('<ShoppingCart />', () => {
         expect(
             screen.getByRole('button', { name: /finalizar/i })
         ).toBeInTheDocument()
-        expect(screen.getByText(/0 items/i)).toBeInTheDocument()
+        expect(screen.getByText(/0 itens/i)).toBeInTheDocument()
     })
 
     it('should render shopping cart with items and total', () => {
@@ -61,7 +61,7 @@ describe('<ShoppingCart />', () => {
         )
 
         expect(screen.getByText(/r\$ 250,00/i)).toBeInTheDocument()
-        expect(container.firstChild?.childNodes[1].childNodes).toHaveLength(
+        expect(container.firstChild?.childNodes[2].childNodes).toHaveLength(
             productsMock.length
         )
     })
