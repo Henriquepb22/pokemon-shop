@@ -1,3 +1,4 @@
+import { BrowserRouter as Router } from 'react-router-dom'
 import { renderWithTheme } from 'utils/tests/helpers'
 import { screen } from '@testing-library/react'
 
@@ -5,7 +6,11 @@ import Home from '.'
 
 describe('<Home />', () => {
     it('should render the home page', () => {
-        renderWithTheme(<Home />)
+        renderWithTheme(
+            <Router>
+                <Home />
+            </Router>
+        )
 
         expect(
             screen.getByRole('heading', { name: /pokémon shop/i })

@@ -1,3 +1,4 @@
+import { memo } from 'react'
 import { formatToCurrency } from 'utils/logic/helpers'
 
 import * as S from './styles'
@@ -29,4 +30,4 @@ const ShoppingCartItem = ({
     </S.Wrapper>
 )
 
-export default ShoppingCartItem
+export default memo(ShoppingCartItem)

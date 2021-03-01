@@ -2,6 +2,10 @@ export default {
     grid: {
         container: '130rem',
         gutter: '3.2rem',
+        header: {
+            normal: '7rem',
+            large: '14rem',
+        },
     },
     layers: {
         base: 10,

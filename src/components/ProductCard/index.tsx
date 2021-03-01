@@ -1,3 +1,4 @@
+import { memo } from 'react'
 import { CartPlus } from '@styled-icons/fa-solid/CartPlus'
 import { formatToCurrency } from 'utils/logic/helpers'
 import Button from 'components/Button'
@@ -27,4 +28,4 @@ const ProductCard = ({ name, price, img, onClick }: ProductCardProps) => (
     </S.Wrapper>
 )
 
-export default ProductCard
+export default memo(ProductCard)

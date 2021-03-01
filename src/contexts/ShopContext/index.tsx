@@ -1,14 +1,15 @@
-import { createContext, useState } from 'react'
+/* eslint-disable @typescript-eslint/no-empty-function */
+import { createContext, useState, useCallback } from 'react'
 import { fire, water, dragon } from 'styles/themes'
+import { ThemeProvider } from 'styled-components'
 import theme from 'styles/theme'
 
 type Shops = 'fire' | 'water' | 'dragon'
 type Theme = typeof theme
-type ShopTheme = typeof fire | typeof water | typeof dragon
 
 type ContextType = {
     shopTheme: Theme
-    changeTheme?: (name: string, newTheme: ShopTheme) => void
+    changeTheme: (newTheme: Shops) => void
     selectedShop: string
 }
 
@@ -19,12 +20,13 @@ const getShopTheme = (name: Shops) => {
 }
 
 const initialValue: ContextType = {
-    selectedShop: 'dragon',
+    selectedShop: 'fire',
+    changeTheme: () => {},
     shopTheme: {
         ...theme,
         colors: {
             ...theme.colors,
-            ...getShopTheme('dragon'),
+            ...getShopTheme('fire'),
         },
     },
 }
@@ -39,18 +41,18 @@ const ShopProvider = ({ children }: ShopProviderProps) => {
     const [currentTheme, setCurrentTheme] = useState(initialValue.shopTheme)
     const [selected, setSelected] = useState(initialValue.selectedShop)
 
-    const changeTheme = (name: string, newTheme: ShopTheme) => {
-        setSelected(name)
+    const changeTheme = useCallback((newTheme: Shops) => {
+        setSelected(newTheme)
         setCurrentTheme((current) => {
             return {
                 ...current,
                 colors: {
                     ...current.colors,
-                    ...newTheme.colors,
+                    ...getShopTheme(newTheme),
                 },
             }
         })
-    }
+    }, [])
 
     const value: ContextType = {
         selectedShop: selected,
@@ -58,7 +60,11 @@ const ShopProvider = ({ children }: ShopProviderProps) => {
         changeTheme,
     }
 
-    return <ShopContext.Provider value={value}>{children}</ShopContext.Provider>
+    return (
+        <ShopContext.Provider value={value}>
+            <ThemeProvider theme={currentTheme}>{children}</ThemeProvider>
+        </ShopContext.Provider>
+    )
 }
 
 export default ShopProvider

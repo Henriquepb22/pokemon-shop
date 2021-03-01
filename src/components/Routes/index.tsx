@@ -1,12 +1,13 @@
-import { Switch, Route } from 'react-router-dom'
+import { Switch, Route, Redirect } from 'react-router-dom'
 import Home from 'pages/Home'
 
 const Routes = () => {
     return (
         <Switch>
-            <Route path="/" exact>
+            <Route path="/shop/:type" exact>
                 <Home />
             </Route>
+            <Redirect from="*" to="/shop/fire" />
         </Switch>
     )
 }

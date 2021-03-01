@@ -11,14 +11,14 @@ export const Wrapper = styled.header`
         left: 0;
         right: 0;
         top: 0;
-        height: 7rem;
+        height: ${theme.grid.header.normal};
         width: 100%;
         background-color: ${theme.colors.primary};
         z-index: ${theme.layers.header};
 
         ${media.lessThan('medium')`
             position: static;
-            height: 14rem;
+            height: ${theme.grid.header.large};
             padding: 0 ${theme.spacings.large};
         `}
     `}
@@ -49,6 +49,7 @@ export const Title = styled.h1`
         color: ${theme.colors.white};
         white-space: nowrap;
         text-transform: capitalize;
+        cursor: default;
 
         ${media.lessThan('medium')`
             font-size: ${theme.fonts.sizes.xlarge};

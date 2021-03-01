@@ -8,9 +8,17 @@ import Input from 'components/Input'
 
 import * as S from './styles'
 
-const Header = () => {
+type HeaderProps = {
+    findByName: (name: string) => void
+}
+
+const Header = ({ findByName }: HeaderProps) => {
     const { selectedShop } = useContext(ShopContext)
     const { products, openCart } = useContext(ShoppingCartContext)
+
+    const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        findByName(e.currentTarget.value)
+    }
 
     return (
         <S.Wrapper>
@@ -20,6 +28,7 @@ const Header = () => {
                     placeholder="Pesquisar..."
                     id="search"
                     icon={<Search />}
+                    onChange={onChange}
                 />
                 <Button
                     icon={<ShoppingCart aria-label="Carrinho de compras" />}

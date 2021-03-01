@@ -34,3 +34,9 @@ export const getPokemonByName = async (name: string): Promise<PokemonProps> => {
 
     return data
 }
+
+export const getPokemonByUrl = async (url: string): Promise<PokemonProps> => {
+    const { data } = await api.get(url)
+
+    return data
+}

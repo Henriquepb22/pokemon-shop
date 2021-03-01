@@ -1,6 +1,6 @@
+import { screen, waitFor } from '@testing-library/react'
 import { renderWithTheme } from 'utils/tests/helpers'
 import userEvent from '@testing-library/user-event'
-import { screen } from '@testing-library/react'
 
 import {
     ShoppingCartContext,
@@ -11,7 +11,8 @@ import Header from '.'
 
 describe('<Header />', () => {
     it('should render the header with heading', () => {
-        renderWithTheme(<Header />)
+        const findByName = jest.fn()
+        renderWithTheme(<Header findByName={findByName} />)
 
         expect(
             screen.getByRole('heading', { name: /pokémon shop/i })
@@ -23,6 +24,7 @@ describe('<Header />', () => {
     })
 
     it('should render items on cart quantity on header', () => {
+        const findByName = jest.fn()
         const value: ShoppingCartProps = {
             isOpen: true,
             totalValue: 250,
@@ -39,7 +41,7 @@ describe('<Header />', () => {
         }
         renderWithTheme(
             <ShoppingCartContext.Provider value={value}>
-                <Header />
+                <Header findByName={findByName} />
             </ShoppingCartContext.Provider>
         )
 
@@ -50,6 +52,7 @@ describe('<Header />', () => {
     })
 
     it('should open the cart clicking on shopping cart icon', async () => {
+        const findByName = jest.fn()
         const value: ShoppingCartProps = {
             isOpen: false,
             totalValue: 250,
@@ -66,7 +69,7 @@ describe('<Header />', () => {
         }
         renderWithTheme(
             <ShoppingCartContext.Provider value={value}>
-                <Header />
+                <Header findByName={findByName} />
             </ShoppingCartContext.Provider>
         )
 
@@ -75,5 +78,20 @@ describe('<Header />', () => {
         userEvent.click(button)
 
         expect(value.openCart).toHaveBeenCalled()
+    })
+
+    it('should find by name when typing on search bar', async () => {
+        const findByName = jest.fn()
+        renderWithTheme(<Header findByName={findByName} />)
+
+        const searchBar = screen.getByPlaceholderText(/pesquisar/i)
+        const text = 'blastoise'
+        expect(searchBar).toBeInTheDocument()
+        userEvent.type(searchBar, text)
+
+        await waitFor(() => {
+            expect(findByName).toHaveBeenCalledTimes(text.length)
+            expect(findByName).toHaveBeenCalledWith(text)
+        })
     })
 })

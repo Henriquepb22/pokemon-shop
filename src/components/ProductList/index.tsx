@@ -1,4 +1,4 @@
-import { useContext } from 'react'
+import { useContext, memo } from 'react'
 import ProductCard, { ProductCardProps } from 'components/ProductCard'
 import { ShoppingCartContext } from 'contexts/ShoppingCartContext'
 
@@ -24,4 +24,4 @@ const ProductList = ({ products }: ProductListProps) => {
     )
 }
 
-export default ProductList
+export default memo(ProductList)
