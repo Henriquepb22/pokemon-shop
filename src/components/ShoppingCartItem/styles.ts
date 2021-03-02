@@ -32,7 +32,7 @@ export const CartProductInfo = styled.div`
 export const CartProductName = styled.p`
     ${({ theme }) => css`
         font-size: ${theme.fonts.sizes.medium};
-        font-weight: ${theme.fonts.normal};
+        font-weight: ${theme.fonts.bold};
         text-transform: capitalize;
 
         > span {
@@ -44,7 +44,6 @@ export const CartProductName = styled.p`
 export const CartProductPrice = styled.p`
     ${({ theme }) => css`
         font-size: ${theme.fonts.sizes.large};
-        font-weight: ${theme.fonts.bold};
 
         ${media.lessThan('medium')`
          font-size: ${theme.fonts.sizes.medium};

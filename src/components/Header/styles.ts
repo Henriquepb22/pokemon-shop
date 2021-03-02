@@ -58,3 +58,12 @@ export const Title = styled.h1`
         `}
     `}
 `
+
+export const LogoImage = styled.img`
+    ${({ theme }) => css`
+        display: inline-block;
+        width: 4rem;
+        height: 4rem;
+        margin-right: ${theme.spacings.small};
+    `}
+`

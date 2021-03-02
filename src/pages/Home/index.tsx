@@ -18,7 +18,7 @@ type RouteParams = {
 
 const Home = () => {
     const { type } = useParams<RouteParams>()
-    const { changeTheme } = useContext(ShopContext)
+    const { changeTheme, selectedShop } = useContext(ShopContext)
     const [loading, setLoading] = useState(false)
     const [products, setProducts] = useState<ProductCardProps[]>([])
     const [filteredProducts, setFilteredProducts] = useState<
@@ -55,7 +55,7 @@ const Home = () => {
                             id,
                             name,
                             img: sprites.front_default,
-                            price: (base_experience * weight) / 10,
+                            price: (base_experience * weight) / 100,
                         },
                     ])
                 })
@@ -85,7 +85,12 @@ const Home = () => {
 
     return (
         <S.Wrapper>
-            <Header findByName={findByName} />
+            <Header
+                title={`${selectedShop.name} Pokémon Shop`}
+                findByName={findByName}
+                logoImage={selectedShop.logo}
+                logoAlt={selectedShop.name}
+            />
             <ShoppingCart />
             <Container>
                 <ProductList
