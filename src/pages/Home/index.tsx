@@ -48,19 +48,25 @@ const Home = ({ type }: HomeProps) => {
                 const pokeProducts: ProductCardProps[] = []
                 await Promise.all(
                     pokeUrls.map(async (url) => {
-                        const {
-                            id,
-                            name,
-                            sprites,
-                            base_experience,
-                            weight,
-                        } = await getPokemonByUrl(url)
-                        pokeProducts.push({
-                            id,
-                            name,
-                            img: sprites.front_default,
-                            price: (base_experience * weight) / 100,
-                        })
+                        try {
+                            const {
+                                id,
+                                name,
+                                sprites,
+                                base_experience,
+                                weight,
+                            } = await getPokemonByUrl(url)
+                            pokeProducts.push({
+                                id,
+                                name,
+                                img: sprites.front_default,
+                                price: (base_experience * weight) / 100,
+                            })
+                        } catch (error) {
+                            toast.error(
+                                'Pokémon não encontrado, verifique se a página carregou corretamente'
+                            )
+                        }
                     })
                 )
                 setProducts(pokeProducts)
