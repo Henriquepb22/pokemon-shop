@@ -5,13 +5,19 @@ import ShoppingCartItem from 'components/ShoppingCartItem'
 import { formatToCurrency } from 'utils/logic/helpers'
 import { ModalContext } from 'contexts/ModalContext'
 import Button from 'components/Button'
+import { toast } from 'react-toastify'
 
 import * as S from './styles'
 
 const ShoppingCart = () => {
-    const { products, totalValue, isOpen, closeCart, clearCart } = useContext(
-        ShoppingCartContext
-    )
+    const {
+        products,
+        totalValue,
+        isOpen,
+        closeCart,
+        clearCart,
+        removeProduct,
+    } = useContext(ShoppingCartContext)
     const { openModal } = useContext(ModalContext)
     const [animationFinished, setAnimationFinished] = useState(true)
 
@@ -34,6 +40,12 @@ const ShoppingCart = () => {
         )
         clearCart()
         closeCart()
+    }
+
+    const handleRemove = (id: number) => {
+        removeProduct(id)
+        toast.clearWaitingQueue()
+        toast.success('Produto removido com sucesso!')
     }
 
     return (
@@ -62,7 +74,11 @@ const ShoppingCart = () => {
             <S.CartProducts>
                 {products.length ? (
                     products.map((product) => (
-                        <ShoppingCartItem key={product.id} {...product} />
+                        <ShoppingCartItem
+                            key={product.id}
+                            handleRemove={handleRemove}
+                            {...product}
+                        />
                     ))
                 ) : (
                     <span>Seu carrinho está vazio</span>

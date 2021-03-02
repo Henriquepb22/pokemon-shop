@@ -11,7 +11,6 @@ import fireLogo from 'assets/images/fire.svg'
 
 type Shops = 'fire' | 'water' | 'dragon'
 type Theme = typeof theme
-
 type ContextType = {
     shopTheme: Theme
     changeTheme: (newTheme: Shops) => void

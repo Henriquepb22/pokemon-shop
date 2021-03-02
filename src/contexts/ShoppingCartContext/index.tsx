@@ -1,7 +1,9 @@
 /* eslint-disable @typescript-eslint/no-empty-function */
-import { createContext, useMemo, useState } from 'react'
+import { createContext, useMemo, useState, useEffect, useContext } from 'react'
 import { ShoppingCartTheme } from 'styles/themes/ShoppingCartTheme'
 import { ProductCardProps } from 'components/ProductCard'
+import { ShopContext } from 'contexts/ShopContext'
+import { toast } from 'react-toastify'
 
 type ProductsProps = (ProductCardProps & {
     quantity: number
@@ -15,6 +17,40 @@ export type ShoppingCartProps = {
     closeCart: () => void
     isOpen: boolean
     clearCart: () => void
+}
+
+const saveCartOnLocalStorage = (
+    selectedShop: string,
+    products: ProductsProps
+) => {
+    if (selectedShop === 'fire')
+        localStorage.setItem('fire-cart-data', JSON.stringify(products))
+    if (selectedShop === 'water')
+        localStorage.setItem('water-cart-data', JSON.stringify(products))
+    if (selectedShop === 'dragon')
+        localStorage.setItem('dragon-cart-data', JSON.stringify(products))
+}
+
+const getCartFromLocalStorage = (selectedShop?: string) => {
+    if (selectedShop === 'fire') {
+        const savedCart = localStorage.getItem('fire-cart-data')
+        if (savedCart) {
+            return JSON.parse(savedCart) as ProductsProps
+        }
+    }
+    if (selectedShop === 'water') {
+        const savedCart = localStorage.getItem('water-cart-data')
+        if (savedCart) {
+            return JSON.parse(savedCart) as ProductsProps
+        }
+    }
+    if (selectedShop === 'dragon') {
+        const savedCart = localStorage.getItem('dragon-cart-data')
+        if (savedCart) {
+            return JSON.parse(savedCart) as ProductsProps
+        }
+    }
+    return null
 }
 
 const initialValue: ShoppingCartProps = {
@@ -35,8 +71,24 @@ type ShoppingCartProviderProps = {
 }
 
 const ShoppingCartProvider = ({ children }: ShoppingCartProviderProps) => {
-    const [products, setProducts] = useState<ProductsProps>([])
-    const [isOpen, setIsOpen] = useState(false)
+    const { selectedShop } = useContext(ShopContext)
+    const [products, setProducts] = useState<ProductsProps>(
+        initialValue.products
+    )
+    const [isOpen, setIsOpen] = useState(initialValue.isOpen)
+
+    useEffect(() => {
+        const savedProducts = getCartFromLocalStorage(selectedShop.name)
+        if (savedProducts) {
+            setProducts(savedProducts)
+        }
+    }, [selectedShop])
+
+    useEffect(() => {
+        if (products.length) {
+            saveCartOnLocalStorage(selectedShop.name, products)
+        }
+    }, [selectedShop, products])
 
     const addProduct = (product: ProductCardProps) => {
         if (products.find(({ id }) => id === product.id)) {
@@ -58,6 +110,8 @@ const ShoppingCartProvider = ({ children }: ShoppingCartProviderProps) => {
                 },
             ])
         }
+        toast.success('Produto foi adicionado no carrinho!')
+        toast.clearWaitingQueue()
     }
 
     const removeProduct = (productId: number) =>

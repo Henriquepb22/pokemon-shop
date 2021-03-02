@@ -18,6 +18,7 @@ export default {
         black: '#030517',
         grey: '#BDC3C7',
         lightGrey: '#F8F8F7',
+        danger: '#E74C3C',
         primary: '',
         secondary: '',
     },

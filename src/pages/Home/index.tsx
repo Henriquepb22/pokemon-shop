@@ -5,9 +5,10 @@ import { ProductCardProps } from 'components/ProductCard'
 import { ModalContext } from 'contexts/ModalContext'
 import { ShopContext } from 'contexts/ShopContext'
 import ShoppingCart from 'components/ShoppingCart'
+import { Redirect, useParams } from 'react-router'
 import { Container } from 'components/Container'
 import ProductList from 'components/ProductList'
-import { useParams } from 'react-router'
+import { toast } from 'react-toastify'
 import Button from 'components/Button'
 import Header from 'components/Header'
 
@@ -27,9 +28,13 @@ const Home = () => {
         ProductCardProps[]
     >([])
     const [pageSize, setPageSize] = useState(20)
+    const [redirect, setRedirect] = useState(false)
     const hasMoreToFetch = pageSize < products.length
 
     useEffect(() => {
+        if (type !== 'fire' && type !== 'water' && type !== 'dragon') {
+            setRedirect(true)
+        }
         changeTheme(type)
     }, [type, changeTheme])
 
@@ -38,31 +43,34 @@ const Home = () => {
             setLoading(true)
             try {
                 const { pokemon: pokemonByTypes } = await getPokemonByType(type)
-
                 const pokeUrls = pokemonByTypes.map(
                     ({ pokemon: { url } }) => url
                 )
-
-                pokeUrls.forEach(async (url) => {
-                    const {
-                        id,
-                        name,
-                        sprites,
-                        base_experience,
-                        weight,
-                    } = await getPokemonByUrl(url)
-                    setProducts((oldProducts) => [
-                        ...oldProducts,
-                        {
+                const pokeProducts: ProductCardProps[] = []
+                await Promise.all(
+                    pokeUrls.map(async (url) => {
+                        const {
+                            id,
+                            name,
+                            sprites,
+                            base_experience,
+                            weight,
+                        } = await getPokemonByUrl(url)
+                        pokeProducts.push({
                             id,
                             name,
                             img: sprites.front_default,
                             price: (base_experience * weight) / 100,
-                        },
-                    ])
-                })
+                        })
+                    })
+                )
+
+                setProducts(pokeProducts)
             } catch (error) {
-                throw new Error(error)
+                toast.error(
+                    error.response?.data.message ||
+                        'Ocorreu um erro, tente novamente'
+                )
             }
             setLoading(false)
         }
@@ -96,6 +104,7 @@ const Home = () => {
             <ShoppingCart />
             <Container>
                 <ProductList
+                    isLoading={loading}
                     products={
                         filteredProducts.length
                             ? filteredProducts
@@ -116,6 +125,7 @@ const Home = () => {
                     </S.LoadMoreContainer>
                 )}
             </Container>
+            {redirect && <Redirect to="/" />}
         </S.Wrapper>
     )
 }
