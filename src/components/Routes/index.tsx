@@ -7,7 +7,7 @@ const Routes = () => {
             <Route path="/shop/:type" exact>
                 <Home />
             </Route>
-            <Redirect from="*" to="/shop/fire" exact />
+            <Redirect from="*" to="/shop/fire" />
         </Switch>
     )
 }
