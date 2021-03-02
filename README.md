@@ -1,46 +1,40 @@
-# Getting Started with Create React App
+# Pokémon e-commerce
+Projeto desenvolvido como teste técnico para uma vaga de desenvolvedor frontend na empresa B2W.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Desenvolvido utilizando as melhores práticas para evitar duplicidade de código, e deixar o código limpo e de fácil leitura e manutenção.
 
-## Available Scripts
+## Sobre o projeto :label:
+Três e-commerces de pokémon separados por tipo de pokémon (Fogo, Água e Dragão).
+O projeto contém os três e-commerces separados por rota, `/shop/fire`, `/shop/dragon` e `/shop/water`.
 
-In the project directory, you can run:
+Desenvolvido utilizando as ferramentas:
 
-### `yarn start`
+- [React](https://reactjs.org/)
+- [Typescript](https://www.typescriptlang.org/)
+- [Styled-components](https://styled-components.com/)
+- [React Testing Library](https://testing-library.com/docs/react-testing-library/intro/)
+- [React Router](https://reactrouter.com/web/guides/quick-start)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Instalação e Testes :package:
+```bash
+  # Clone o repositório na pasta desejada
+  git clone https://github.com/Henriquepb22/pokemon-shop
+  # Via SSH
+  git@github.com:Henriquepb22/pokemon-shop.git
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+  # Entre na pasta do projeto clonado
+  cd pokemon-shop
 
-### `yarn test`
+  # Instale as dependencies e rode o projeto
+  yarn
+  yarn start
+  # Com NPM
+  npm install
+  npm run start
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+  # Para rodar os testes basta entrar na pasta do projeto e rodar o rodar o seguinte comando
+  yarn test
+```
 
-### `yarn build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `yarn eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+# Licença :heavy_check_mark:
+[MIT](https://github.com/Henriquepb22/pokemon-shop/blob/main/LICENSE)
