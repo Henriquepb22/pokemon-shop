@@ -11,7 +11,7 @@ Hospedado nos seguintes links:
 - [Fogo](https://pokemon-ecommerce.netlify.app/shop/fire)
 - [Dragão](https://pokemon-ecommerce.netlify.app/shop/dragon)
 - [Água](https://pokemon-ecommerce.netlify.app/shop/water)
-- 
+
 Desenvolvido utilizando as ferramentas:
 
 - [React](https://reactjs.org/)
