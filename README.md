@@ -1,5 +1,5 @@
 # Pokémon e-commerce
-Projeto desenvolvido como teste técnico para uma vaga de desenvolvedor frontend na empresa B2W.
+Projeto desenvolvido como teste técnico para uma vaga de desenvolvedor frontend na empresa [B2W Digital](https://ri.b2w.digital/).
 
 Desenvolvido utilizando as melhores práticas para evitar duplicidade de código, e deixar o código limpo e de fácil leitura e manutenção.
 
@@ -7,6 +7,11 @@ Desenvolvido utilizando as melhores práticas para evitar duplicidade de código
 Três e-commerces de pokémon separados por tipo de pokémon (Fogo, Água e Dragão).
 O projeto contém os três e-commerces separados por rota, `/shop/fire`, `/shop/dragon` e `/shop/water`.
 
+Hospedado nos seguintes links:
+- [Fogo](https://pokemon-ecommerce.netlify.app/shop/fire)
+- [Dragão](https://pokemon-ecommerce.netlify.app/shop/dragon)
+- [Água](https://pokemon-ecommerce.netlify.app/shop/water)
+- 
 Desenvolvido utilizando as ferramentas:
 
 - [React](https://reactjs.org/)
