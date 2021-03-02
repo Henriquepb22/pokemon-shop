@@ -5,21 +5,20 @@ import { ProductCardProps } from 'components/ProductCard'
 import { ModalContext } from 'contexts/ModalContext'
 import { ShopContext } from 'contexts/ShopContext'
 import ShoppingCart from 'components/ShoppingCart'
-import { Redirect, useParams } from 'react-router'
 import { Container } from 'components/Container'
 import ProductList from 'components/ProductList'
+import { Redirect } from 'react-router'
 import { toast } from 'react-toastify'
 import Button from 'components/Button'
 import Header from 'components/Header'
 
 import * as S from './styles'
 
-type RouteParams = {
+type HomeProps = {
     type: 'fire' | 'water' | 'dragon'
 }
 
-const Home = () => {
-    const { type } = useParams<RouteParams>()
+const Home = ({ type }: HomeProps) => {
     const { changeTheme, selectedShop } = useContext(ShopContext)
     const { isOpen } = useContext(ModalContext)
     const [loading, setLoading] = useState(false)

@@ -8,7 +8,7 @@ describe('<Home />', () => {
     it('should render the home page', () => {
         renderWithTheme(
             <Router>
-                <Home />
+                <Home type="fire" />
             </Router>
         )
 
