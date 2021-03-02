@@ -7,6 +7,16 @@ export const Wrapper = styled.div`
         justify-content: space-between;
         align-items: center;
         position: relative;
+        animation: fadeIn 0.4s linear forwards;
+
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+            }
+            100% {
+                opacity: 1;
+            }
+        }
 
         &:not(:first-child) {
             border-top: 1px solid ${theme.colors.secondary};
