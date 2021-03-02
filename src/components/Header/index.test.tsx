@@ -38,6 +38,7 @@ describe('<Header />', () => {
             removeProduct: jest.fn(),
             closeCart: jest.fn(),
             openCart: jest.fn(),
+            clearCart: jest.fn(),
         }
         renderWithTheme(
             <ShoppingCartContext.Provider value={value}>
@@ -66,6 +67,7 @@ describe('<Header />', () => {
             removeProduct: jest.fn(),
             closeCart: jest.fn(),
             openCart: jest.fn(),
+            clearCart: jest.fn(),
         }
         renderWithTheme(
             <ShoppingCartContext.Provider value={value}>

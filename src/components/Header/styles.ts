@@ -42,9 +42,21 @@ export const Container = styled(BaseContainer)`
         `}
 `
 
+export const TitleWrapper = styled.div`
+    ${({ theme }) => css`
+        display: flex;
+        align-items: center;
+        margin-right: ${theme.spacings.xlarge};
+
+        ${media.lessThan('medium')`
+            margin-bottom: ${theme.spacings.xsmall};
+            margin-right: 0;
+        `}
+    `}
+`
+
 export const Title = styled.h1`
     ${({ theme }) => css`
-        margin-right: ${theme.spacings.xlarge};
         font-size: ${theme.fonts.sizes.xxlarge};
         color: ${theme.colors.white};
         white-space: nowrap;
@@ -53,8 +65,6 @@ export const Title = styled.h1`
 
         ${media.lessThan('medium')`
             font-size: ${theme.fonts.sizes.xlarge};
-            margin-bottom: ${theme.spacings.xsmall};
-            margin-right: 0;
         `}
     `}
 `
@@ -65,5 +75,10 @@ export const LogoImage = styled.img`
         width: 4rem;
         height: 4rem;
         margin-right: ${theme.spacings.small};
+
+        ${media.lessThan('medium')`
+            width: 2.6rem;
+            height: 2.6rem;
+        `}
     `}
 `

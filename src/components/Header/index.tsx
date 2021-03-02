@@ -24,16 +24,22 @@ const Header = ({ findByName, title, logoImage, logoAlt }: HeaderProps) => {
     return (
         <S.Wrapper>
             <S.Container>
-                {!!logoImage && <S.LogoImage src={logoImage} alt={logoAlt} />}
-                <S.Title>{title}</S.Title>
+                <S.TitleWrapper>
+                    {!!logoImage && (
+                        <S.LogoImage src={logoImage} alt={logoAlt} />
+                    )}
+                    <S.Title>{title}</S.Title>
+                </S.TitleWrapper>
                 <Input
+                    aria-label="pesquisar"
                     placeholder="Pesquisar..."
                     id="search"
                     icon={<Search />}
                     onChange={onChange}
                 />
                 <Button
-                    icon={<ShoppingCart aria-label="Carrinho de compras" />}
+                    aria-label="Carrinho de compras"
+                    icon={<ShoppingCart aria-hidden />}
                     onlyIcon
                     badge={products.length ? `${products.length}` : ''}
                     onClick={() => openCart()}

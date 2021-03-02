@@ -28,9 +28,9 @@ export const ProductWrapper = styled.div`
 `
 
 export const Image = styled.img`
-    display: block;
     height: calc(20rem - 3.2rem - 4px);
     width: calc(20rem - 3.2rem - 4px);
+    object-fit: cover;
 `
 
 export const ProductInfo = styled.div`

@@ -22,7 +22,11 @@ const ProductCard = ({ name, price, img, onClick }: ProductCardProps) => (
                 <S.ProductPrice>{formatToCurrency(price)}</S.ProductPrice>
             </S.ProductInfo>
         </S.ProductWrapper>
-        <Button icon={<CartPlus />} onClick={onClick}>
+        <Button
+            aria-label="adicionar ao carrinho"
+            icon={<CartPlus aria-hidden />}
+            onClick={onClick}
+        >
             Adicionar
         </Button>
     </S.Wrapper>

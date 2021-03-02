@@ -1,16 +1,18 @@
 import { useContext, useState, useEffect } from 'react'
-import { ArrowLeft } from '@styled-icons/fa-solid/ArrowLeft'
 import { ShoppingCartContext } from 'contexts/ShoppingCartContext'
-import { formatToCurrency } from 'utils/logic/helpers'
+import { ArrowLeft } from '@styled-icons/fa-solid/ArrowLeft'
 import ShoppingCartItem from 'components/ShoppingCartItem'
+import { formatToCurrency } from 'utils/logic/helpers'
+import { ModalContext } from 'contexts/ModalContext'
 import Button from 'components/Button'
 
 import * as S from './styles'
 
 const ShoppingCart = () => {
-    const { products, totalValue, isOpen, closeCart } = useContext(
+    const { products, totalValue, isOpen, closeCart, clearCart } = useContext(
         ShoppingCartContext
     )
+    const { openModal } = useContext(ModalContext)
     const [animationFinished, setAnimationFinished] = useState(true)
 
     useEffect(() => {
@@ -25,6 +27,15 @@ const ShoppingCart = () => {
         }
     }, [isOpen])
 
+    const handlePurchase = () => {
+        openModal(
+            'Obrigado!!!',
+            `Você ganhou ${formatToCurrency((totalValue / 100) * 10)} de volta`
+        )
+        clearCart()
+        closeCart()
+    }
+
     return (
         <S.Wrapper
             isOpen={isOpen}
@@ -33,7 +44,8 @@ const ShoppingCart = () => {
         >
             <Button
                 onlyIcon
-                icon={<ArrowLeft aria-label="Fechar carrinho" />}
+                aria-label="fechar carrinho"
+                icon={<ArrowLeft aria-hidden />}
                 onClick={closeCart}
                 type="button"
             />
@@ -61,7 +73,12 @@ const ShoppingCart = () => {
                     <S.TotalTitle>Total:</S.TotalTitle>
                     <S.TotalValue>{formatToCurrency(totalValue)}</S.TotalValue>
                 </S.TotalContainer>
-                <Button type="button" disabled={!products.length}>
+                <Button
+                    aria-label="finalizar compra"
+                    type="button"
+                    disabled={!products.length}
+                    onClick={() => handlePurchase()}
+                >
                     Finalizar
                 </Button>
             </S.CartCheckout>

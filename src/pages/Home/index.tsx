@@ -2,6 +2,7 @@ import { useEffect, useState, useContext, useCallback } from 'react'
 import { getPokemonByType, getPokemonByUrl } from 'api/requests/pokemon'
 import { ChevronDown } from '@styled-icons/fa-solid/ChevronDown'
 import { ProductCardProps } from 'components/ProductCard'
+import { ModalContext } from 'contexts/ModalContext'
 import { ShopContext } from 'contexts/ShopContext'
 import ShoppingCart from 'components/ShoppingCart'
 import { Container } from 'components/Container'
@@ -19,6 +20,7 @@ type RouteParams = {
 const Home = () => {
     const { type } = useParams<RouteParams>()
     const { changeTheme, selectedShop } = useContext(ShopContext)
+    const { isOpen } = useContext(ModalContext)
     const [loading, setLoading] = useState(false)
     const [products, setProducts] = useState<ProductCardProps[]>([])
     const [filteredProducts, setFilteredProducts] = useState<
@@ -84,7 +86,7 @@ const Home = () => {
     )
 
     return (
-        <S.Wrapper>
+        <S.Wrapper aria-disabled={isOpen}>
             <Header
                 title={`${selectedShop.name} Pokémon Shop`}
                 findByName={findByName}
@@ -103,7 +105,8 @@ const Home = () => {
                 {hasMoreToFetch && !filteredProducts.length && (
                     <S.LoadMoreContainer>
                         <Button
-                            icon={<ChevronDown />}
+                            aria-label="carregar mais"
+                            icon={<ChevronDown aria-hidden />}
                             type="button"
                             onClick={loadMore}
                             disabled={loading}

@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-empty-function */
 import { createContext, useMemo, useState } from 'react'
-import { ShoppingCartTheme } from 'styles/themes/shoppingCart'
+import { ShoppingCartTheme } from 'styles/themes/ShoppingCartTheme'
 import { ProductCardProps } from 'components/ProductCard'
 
 type ProductsProps = (ProductCardProps & {
@@ -14,6 +14,7 @@ export type ShoppingCartProps = {
     openCart: () => void
     closeCart: () => void
     isOpen: boolean
+    clearCart: () => void
 }
 
 const initialValue: ShoppingCartProps = {
@@ -24,6 +25,7 @@ const initialValue: ShoppingCartProps = {
     openCart: () => {},
     closeCart: () => {},
     isOpen: false,
+    clearCart: () => {},
 }
 
 export const ShoppingCartContext = createContext(initialValue)
@@ -69,6 +71,7 @@ const ShoppingCartProvider = ({ children }: ShoppingCartProviderProps) => {
 
     const openCart = () => setIsOpen(true)
     const closeCart = () => setIsOpen(false)
+    const clearCart = () => setProducts([])
 
     const value: ShoppingCartProps = {
         products,
@@ -78,6 +81,7 @@ const ShoppingCartProvider = ({ children }: ShoppingCartProviderProps) => {
         openCart,
         closeCart,
         isOpen,
+        clearCart,
     }
 
     return (

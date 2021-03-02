@@ -18,6 +18,7 @@ describe('<ShoppingCart />', () => {
             removeProduct: jest.fn(),
             closeCart: jest.fn(),
             openCart: jest.fn(),
+            clearCart: jest.fn(),
         }
 
         renderWithTheme(
@@ -52,6 +53,7 @@ describe('<ShoppingCart />', () => {
             removeProduct: jest.fn(),
             closeCart: jest.fn(),
             openCart: jest.fn(),
+            clearCart: jest.fn(),
         }
 
         const { container } = renderWithTheme(
@@ -80,6 +82,7 @@ describe('<ShoppingCart />', () => {
             removeProduct: jest.fn(),
             closeCart: jest.fn(),
             openCart: jest.fn(),
+            clearCart: jest.fn(),
         }
 
         renderWithTheme(
